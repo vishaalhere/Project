@@ -1,12 +1,12 @@
 const fetch = require("node-fetch");
 
 exports.getOneUser = async (req, res) => {
-  const user = await fetch(`${process.env.DB_URL}/users/${req.params.id}`).then((response) => response.json())
-  .then((data) => console.log(data));
+  const response = await fetch(`${process.env.DB_URL}/users/${req.params.id}`);
+  const user =  await response.json();
 
   res.status(200).json({
     success: true,
-    user,
+    data: user,
   });
 };
 
